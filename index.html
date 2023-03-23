@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <style>
+        .box12,.box1 , .box2 , .box3 , .box4 , .box5 ,.box6{
+    height: 80px;
+    width: 80px;
+            border: 3px solid black;
+        }
+        .opponent,.opponent2{
+    
+            display: flex;
+        }
+    .opponent{
+        height: 130px;
+    }
+   .days{
+       font-family: Oswald;
+       
+   }
+            
+        
+    </style>
+    <main>
+    <div class="gamearea">
+        <div class="opponent">
+            <div class="box1" id="box1" onclick="select('box1') , forAttack1()">
+                <p id="score1"  > </p>
+            </div>
+
+
+            <div class="box12" id="box12" onclick="yourbase1()">
+                <p id="score12"></p>
+            </div>
+
+
+            <div class="box2" id="box2" onclick="select('box2') , forAttack2()">
+                <p id="score2"></p>
+            </div>
+
+
+            <div class="box3" id="box3" onclick="select('box3'), forAttack3()">
+                <p id="score3"></p>
+            </div>
+
+
+        </div>
+
+
+        <div class="opponent2">
+
+
+             <div class="box4" id="box4">
+                 <p id="score4"></p>
+             </div>
+
+
+             <div  class="box5" id="box5" onclick="select('box5') , forAttack5()">
+                 <p id="score5"></p>
+             </div>
+
+
+             <div class="box6" id="box6" onclick="select('box6'), forAttack6()">
+                 <p id="score6"></p>
+             </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div>
+        <input type="text" id="score">
+    </div>
+
+
+    <div>
+        <button id="btn" onclick="nextstep() , nextfight()">nextstep</button>
+    </div>
+
+
+    <div>
+        <button id="plusbtn" onclick="plusscore()">plus the score</button>
+    </div>
+
+
+    <span class="daysdiv" id="daysdiv" >
+        <p id="days" class="days">0 day </p>
+    </span>
+
+
+
+ </main> 
+ <script>
+
+document.querySelector(".box1").style.background = "pink"
+document.querySelector(".box2").style.background = "pink"
+document.querySelector(".box3").style.background = "pink"
+document.querySelector(".box4").style.background = "red"
+document.querySelector(".box5").style.background = "pink"
+document.querySelector(".box6").style.background = "pink"
+
+
+
+     let score1 = 600;
+      document.getElementById("score1").innerHTML = score1;
+      
+
+
+
+      let score4 = 100;
+      document.getElementById("score4").innerHTML = score4;
+
+
+
+
+
+
+
+
+/* this funtion is use to move on next step*/
+      function nextstep()
+{
+    let i =10;
+    let points = parseInt(document.getElementById('score').value);
+    points = isNaN(points) ? 0 : points;
+    let score = points + i;
+    document.getElementById('score').value = score;
+
+
+    /*for days function*/
+    let increase = 1;
+    let days = parseInt(document.getElementById("days").innerHTML);
+    days = isNaN(days) ? 0 : days;
+    let dayonstep = days + increase;
+    document.getElementById("days").innerHTML = dayonstep + "day";
+
+    alert(dayonstep + "day");
+}
+
+
+
+
+
+
+     /*this funtion is used to add the points which is given as free at every step*/
+     function plusscore(){
+
+      let points = parseInt(document.getElementById("score").value);
+      let score4 = parseInt(document.getElementById("score4").innerHTML);
+      let addition = points + score4;
+      document.getElementById("score4").innerHTML = addition;
+
+
+        let emptypoint = 00;
+        document.getElementById("score").value = emptypoint;
+     }
+
+
+
+
+
+
+
+
+/*this funtion is used to show the selected element*/
+function select(X){
+
+                
+         
+document.getElementById(X).style.border = "5px solid yellow";
+
+}
+
+
+    
+
+
+
+
+
+/* this funtion show the result of attack*/
+
+function forAttack1(){
+               
+
+                
+               let score1 = parseInt(document.getElementById("score1").innerHTML);
+               let score4 = parseInt(document.getElementById("score4").innerHTML);
+
+               
+               if (score4 > score1) {
+                   
+                   document.getElementById("box1").style.borderRadius = "50px"
+                   document.getElementById("box1").style.background = "red"
+
+                 let attacklose = score4 - score1;
+                  document.getElementById("score1").innerHTML = attacklose;
+                  
+                  let afterattact = 00;
+                  document.getElementById("score4").innerHTML = afterattact;
+                   alert("you wn");
+
+
+                   
+                  document.getElementById("box1").style.display = "none"; 
+                  
+               }
+
+              
+
+
+               else {
+                   let attacklose = score1 - score4;
+                   document.getElementById("score1").innerHTML = attacklose;
+                   let afterattact = 00;
+                   document.getElementById("score4").innerHTML = afterattact;
+
+                   alert("you lose");
+                }       
+                
+}
+
+
+document.getElementById("box12").style.display = "";
+ 
+score1 = parseInt(document.getElementById("score1").innerHTML);
+score4 = parseInt(document.getElementById("score4").innerHTML);
+
+
+if (score4 > score1){
+
+
+    document.getElementById("box12").style.borderRadius = "50px"
+    document.getElementById("box12").style.background = "red"
+
+                 let attacklose = score4 - score1;
+                  document.getElementById("score12").innerHTML = attacklose;
+                  
+                  let afterattact = 00;
+                  document.getElementById("score4").innerHTML = afterattact;
+       
+    }
+
+
+
+
+ </script>
+</body>
+</html>
